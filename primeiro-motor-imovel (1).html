@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Primeiro Motor Imóvel — Da Metafísica de Aristóteles à Suma Teológica</title>
+<meta name="description" content="Guia filosófico aprofundado sobre o argumento do Primeiro Motor Imóvel: de Aristóteles a São Tomás de Aquino, passando pelo debate Copleston-Russell e as objeções de Hume e Kant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:#B8962E;--gold-l:#D4AF5A;--gold-p:#F5EDD5;
+    --ink:#1A1510;--ink-s:#3D3425;
+    --parch:#F8F3E8;--parch-d:#EDE4CC;
+    --stone:#7A6E5F;--stone-l:#A89880;
+    --white:#FDFAF4;
+    --border:rgba(184,150,46,0.22);
+    --blue-bg:#E8F0FA;--blue-tx:#1A3A6B;
+    --red-bg:#FAE8E8;--red-tx:#6B1A1A;
+    --green-bg:#E8F5EE;--green-tx:#1A5A35;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'EB Garamond',Georgia,serif;background:var(--parch);color:var(--ink);line-height:1.8;overflow-x:hidden}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;background:var(--ink);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='400' cy='400' r='350' fill='none' stroke='%23B8962E' stroke-width='.6'/%3E%3Ccircle cx='400' cy='400' r='280' fill='none' stroke='%23B8962E' stroke-width='.5'/%3E%3Ccircle cx='400' cy='400' r='200' fill='none' stroke='%23B8962E' stroke-width='.4'/%3E%3Ccircle cx='400' cy='400' r='120' fill='none' stroke='%23B8962E' stroke-width='.3'/%3E%3Cline x1='400' y1='50' x2='400' y2='750' stroke='%23B8962E' stroke-width='.4'/%3E%3Cline x1='50' y1='400' x2='750' y2='400' stroke='%23B8962E' stroke-width='.4'/%3E%3Cline x1='153' y1='153' x2='647' y2='647' stroke='%23B8962E' stroke-width='.3'/%3E%3Cline x1='647' y1='153' x2='153' y2='647' stroke='%23B8962E' stroke-width='.3'/%3E%3Cpolygon points='400,60 740,600 60,600' fill='none' stroke='%23B8962E' stroke-width='.4'/%3E%3C/svg%3E");background-size:cover;background-position:center}
+  .hero-content{position:relative;z-index:1;max-width:780px}
+  .hero-eyebrow{font-family:'Source Code Pro',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);margin-bottom:32px;opacity:0;animation:fadeUp .8s ease .2s forwards}
+  .hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;color:var(--white);line-height:1.12;margin-bottom:24px;opacity:0;animation:fadeUp .8s ease .4s forwards}
+  .hero-title em{font-style:italic;color:var(--gold-l)}
+  .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(253,250,244,.65);margin-bottom:52px;font-style:italic;line-height:1.7;opacity:0;animation:fadeUp .8s ease .6s forwards}
+  .hero-chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s ease .8s forwards}
+  .chip{display:inline-flex;flex-direction:column;align-items:center;background:rgba(184,150,46,.1);border:1px solid rgba(184,150,46,.28);border-radius:8px;padding:10px 20px;color:var(--gold-l);font-size:.9rem}
+  .chip small{font-family:'Source Code Pro',monospace;font-size:.68rem;color:var(--stone-l);margin-top:2px}
+  .scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(253,250,244,.3);font-family:'Source Code Pro',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;animation:pulse 2.5s ease-in-out infinite;z-index:1}
+  .scroll-cue::after{content:'';width:1px;height:36px;background:linear-gradient(180deg,rgba(184,150,46,.5),transparent)}
+
+  /* NAV */
+  .nav-wrap{position:sticky;top:0;z-index:100;background:rgba(248,243,232,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:980px;margin:0 auto;padding:0 24px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none}
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav-btn{flex-shrink:0;font-family:'Source Code Pro',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);padding:15px 16px;border:none;border-bottom:2px solid transparent;background:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+  .nav-btn:hover{color:var(--ink);border-bottom-color:var(--gold-l)}
+  .nav-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* PROGRESS */
+  .progress{display:flex;gap:5px;justify-content:center;padding:22px 0 0}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--parch-d);transition:background .3s,transform .3s}
+  .dot.on{background:var(--gold);transform:scale(1.25)}
+
+  /* LAYOUT */
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  .panel{display:none;padding:56px 0 72px}
+  .panel.on{display:block;animation:panelIn .35s ease}
+  @keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.show{opacity:1;transform:translateY(0)}
+
+  /* TYPOGRAPHY */
+  .tag{font-family:'Source Code Pro',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .tag::before{content:'';width:26px;height:1px;background:var(--gold);display:inline-block}
+  h2{font-family:'Libre Baskerville',serif;font-size:clamp(1.7rem,4.5vw,2.4rem);font-weight:700;line-height:1.22;margin-bottom:22px;color:var(--ink)}
+  h3{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--ink-s);margin:38px 0 14px}
+  p{font-size:1.1rem;color:var(--ink-s);margin-bottom:18px;line-height:1.85}
+  strong{color:var(--ink)} em{font-style:italic}
+
+  /* BLOCKQUOTE */
+  blockquote{position:relative;margin:34px 0;padding:22px 30px 22px 50px;border-left:3px solid var(--gold);background:rgba(184,150,46,.05);border-radius:0 8px 8px 0}
+  blockquote::before{content:'\201C';position:absolute;top:4px;left:12px;font-family:'Libre Baskerville',serif;font-size:4.5rem;color:var(--gold-l);line-height:1;opacity:.45}
+  blockquote p{font-style:italic;font-size:1.1rem;margin-bottom:10px}
+  blockquote cite{font-family:'Source Code Pro',monospace;font-size:.72rem;letter-spacing:.12em;color:var(--stone);text-transform:uppercase;display:block}
+
+  /* BOXES */
+  .box{background:var(--white);border:1px solid var(--parch-d);border-radius:10px;padding:22px 26px;margin:22px 0;position:relative}
+  .box-label{position:absolute;top:-9px;left:18px;font-family:'Source Code Pro',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:0 8px;background:var(--white)}
+  .lx{color:var(--gold)} .ls{color:var(--stone)} .lo{color:#6B3A2A}
+  .box p{font-size:1rem;margin-bottom:8px} .box p:last-child{margin-bottom:0}
+
+  /* CONCEPT CARDS */
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+  @media(max-width:580px){.g2{grid-template-columns:1fr}}
+  .cc{padding:22px 22px 20px;border-radius:10px;border:1px solid}
+  .cc.blue{background:var(--blue-bg);border-color:#90ADE0}
+  .cc.amber{background:#FDF3DC;border-color:#D4AF5A}
+  .cc.red{background:var(--red-bg);border-color:#E0A0A0}
+  .cc.green{background:var(--green-bg);border-color:#80C0A0}
+  .cc-tag{font-family:'Source Code Pro',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+  .blue .cc-tag{color:var(--blue-tx)} .amber .cc-tag{color:#6B4800} .red .cc-tag{color:var(--red-tx)} .green .cc-tag{color:var(--green-tx)}
+  .cc-title{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:700;margin-bottom:8px}
+  .blue .cc-title{color:var(--blue-tx)} .amber .cc-title{color:#4A3000} .red .cc-title{color:var(--red-tx)} .green .cc-title{color:var(--green-tx)}
+  .cc-body{font-size:.95rem;line-height:1.65}
+  .blue .cc-body{color:#2A4A80} .amber .cc-body{color:#5A3E10} .red .cc-body{color:#7A3030} .green .cc-body{color:#1A4A2A}
+
+  /* CHAIN */
+  .chain{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:20px 24px;background:var(--white);border:1px solid var(--parch-d);border-radius:10px;margin:24px 0}
+  .cn{padding:7px 18px;border-radius:100px;font-family:'EB Garamond',serif;font-size:1rem;font-weight:600;border:1.5px solid}
+  .cn-p{background:var(--blue-bg);color:var(--blue-tx);border-color:#90ADE0}
+  .cn-a{background:#FDF3DC;color:#4A3000;border-color:#D4AF5A}
+  .cn-pure{background:#EDE8FD;color:#3A1A7A;border-color:#B0A0E0}
+  .cn-arr{color:var(--stone-l);font-size:1.4rem}
+
+  /* ATTRIBUTES */
+  .ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;margin:26px 0}
+  .at{padding:18px 20px;background:var(--white);border:1px solid var(--parch-d);border-top:3px solid var(--gold);border-radius:8px}
+  .at-t{font-family:'Libre Baskerville',serif;font-size:.88rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+  .at-b{font-size:.9rem;color:var(--stone);line-height:1.55}
+
+  /* OBJECTIONS */
+  .obj{border-radius:10px;overflow:hidden;border:1px solid var(--parch-d);margin:22px 0}
+  .obj-h{background:linear-gradient(90deg,var(--ink),var(--ink-s));padding:14px 22px;display:flex;align-items:center;gap:14px}
+  .obj-n{font-family:'Source Code Pro',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold-l)}
+  .obj-q{font-style:italic;color:var(--parch);font-size:1rem}
+  .obj-b{padding:18px 22px;background:var(--white)}
+  .obj-b p{font-size:1rem;margin-bottom:10px} .obj-b p:last-child{margin-bottom:0}
+
+  /* PHILOSOPHER CARD */
+  .phil{display:flex;gap:20px;align-items:flex-start;padding:20px 22px;background:var(--white);border:1px solid var(--parch-d);border-radius:10px;margin:16px 0}
+  .phil-badge{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:var(--gold-p);border:2px solid var(--gold-l);display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',serif;font-size:1.05rem;font-weight:700;color:#6B3A2A}
+  .ph-name{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--ink)}
+  .ph-dates{font-family:'Source Code Pro',monospace;font-size:.72rem;color:var(--stone);letter-spacing:.08em;margin-bottom:6px}
+  .ph-desc{font-size:.95rem;color:var(--ink-s);line-height:1.6}
+
+  /* DIVIDER */
+  .div{display:flex;align-items:center;gap:14px;margin:44px 0}
+  .div::before,.div::after{content:'';flex:1;height:1px;background:var(--border)}
+  .div-g{color:var(--gold-l);font-size:1rem;opacity:.7}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:rgba(253,250,244,.45);text-align:center;padding:44px 24px;font-family:'Source Code Pro',monospace;font-size:11px;letter-spacing:.1em;line-height:2}
+  footer a{color:var(--gold-l);text-decoration:none}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+
+  @media(max-width:640px){
+    .nav-btn{padding:13px 12px;font-size:9px}
+    .panel{padding:40px 0 56px}
+    blockquote{padding:18px 18px 18px 38px}
+    .phil{flex-direction:column;gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Filosofia · Metafísica Clássica · Apologética</p>
+    <h1 class="hero-title">O <em>Primeiro Motor</em><br>Imóvel</h1>
+    <p class="hero-sub">O argumento mais antigo e resistente sobre a existência de Deus —<br>deduzido pela razão pura, antes do Cristianismo existir.</p>
+    <div class="hero-chips">
+      <div class="chip">Aristóteles <small>384–322 a.C.</small></div>
+      <div class="chip">São Tomás de Aquino <small>1225–1274</small></div>
+      <div class="chip">Copleston vs. Russell <small>BBC · 1948</small></div>
+    </div>
+  </div>
+  <div class="scroll-cue">Começar</div>
+</header>
+
+<nav class="nav-wrap" id="nav">
+  <div class="nav-inner">
+    <button class="nav-btn on" data-p="origem">01 · Origem</button>
+    <button class="nav-btn" data-p="metodo">02 · Método</button>
+    <button class="nav-btn" data-p="conceitos">03 · Potência &amp; Ato</button>
+    <button class="nav-btn" data-p="causalidade">04 · Causalidade</button>
+    <button class="nav-btn" data-p="cadeia">05 · A Cadeia</button>
+    <button class="nav-btn" data-p="conclusao">06 · O Ato Puro</button>
+    <button class="nav-btn" data-p="debate">07 · Debate 1948</button>
+    <button class="nav-btn" data-p="objecoes">08 · Objeções</button>
+    <button class="nav-btn" data-p="limites">09 · Limites</button>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="progress" id="prog"></div>
+
+    <!-- 01 ORIGEM -->
+    <section class="panel on" id="origem">
+      <div class="reveal">
+        <div class="tag">Contexto histórico</div>
+        <h2>Um argumento anterior ao Cristianismo</h2>
+        <p>Um equívoco comum é tratar o argumento do Primeiro Motor Imóvel como uma tese cristã. Não é. Ele nasce no século IV a.C., séculos antes de Cristo, na <em>Metafísica</em> e na <em>Física</em> de <strong>Aristóteles de Estagira</strong> — filósofo que estava em franca oposição à religião politeísta grega de sua época.</p>
+        <p>Aristóteles e seu mestre <strong>Platão</strong> concluíram, pelo exercício da razão pura, que deve existir um único princípio originador de toda a realidade. Essa conclusão os colocou em conflito com o panteão grego — não os aproximou dele.</p>
+      </div>
+      <div class="reveal">
+        <blockquote>
+          <p>"É preciso que exista um princípio tal que sua substância seja o ato mesmo."</p>
+          <cite>Aristóteles — Metafísica, Livro XII (Lambda), 1071b</cite>
+        </blockquote>
+      </div>
+      <div class="reveal">
+        <h3>A tradição filosófica que construiu o argumento</h3>
+        <div class="phil">
+          <div class="phil-badge">Ar</div>
+          <div>
+            <div class="ph-name">Aristóteles</div>
+            <div class="ph-dates">384–322 a.C. · Estagira, Macedônia</div>
+            <div class="ph-desc">Formula o argumento original na <em>Física</em> (livros VII–VIII) e na <em>Metafísica</em> (livro XII). Desenvolve os conceitos de potência, ato e movimento. Conclui pela necessidade de um Ato Puro — eterno, imóvel, imaterial. Aristóteles o chama de "Deus", mas o concebe como pensamento que contempla a si mesmo, sem relação pessoal com o cosmos.</div>
+          </div>
+        </div>
+        <div class="phil">
+          <div class="phil-badge">Av</div>
+          <div>
+            <div class="ph-name">Averróis (Ibn Rushd)</div>
+            <div class="ph-dates">1126–1198 · Córdoba, Al-Andalus</div>
+            <div class="ph-desc">Filósofo islâmico que produziu os mais importantes comentários medievais à Aristóteles, transmitindo-o ao Ocidente cristão. Seu trabalho sobre o Motor Imóvel foi decisivo para que São Tomás tivesse acesso ao argumento em sua forma completa.</div>
+          </div>
+        </div>
+        <div class="phil">
+          <div class="phil-badge">ST</div>
+          <div>
+            <div class="ph-name">São Tomás de Aquino</div>
+            <div class="ph-dates">1225–1274 · Reino de Nápoles</div>
+            <div class="ph-desc">Sistematiza o argumento como a "Primeira Via" na <em>Suma Teológica</em> (I, q.2, a.3). Adiciona a distinção entre <em>causa fieri</em> (causa de vir a ser) e <em>causa esse</em> (causa de continuar a existir a cada instante), tornando o argumento ontológico e não apenas temporal.</div>
+          </div>
+        </div>
+        <div class="phil">
+          <div class="phil-badge">FC</div>
+          <div>
+            <div class="ph-name">Frederick Copleston, S.J.</div>
+            <div class="ph-dates">1907–1994 · Bristol, Inglaterra</div>
+            <div class="ph-desc">Padre jesuíta e autor da monumental <em>História da Filosofia</em> em 9 volumes. Em 1948, defendeu o argumento cosmológico num célebre debate de rádio na BBC contra Bertrand Russell — hoje um dos textos mais citados na filosofia da religião do século XX.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="box">
+          <div class="box-label ls">Nota importante</div>
+          <p>A conclusão filosófica — <em>existe um ser eterno, imaterial, anterior ao cosmos e princípio de toda ordem</em> — não é a mesma coisa que afirmar o Deus cristão, islâmico ou judaico. O argumento chega a um <strong>Deus filosófico</strong>. A teologia revelada começa depois dessa conclusão, e é independente dela.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 MÉTODO -->
+    <section class="panel" id="metodo">
+      <div class="reveal">
+        <div class="tag">Premissa metodológica</div>
+        <h2>Por que não é um debate científico</h2>
+        <p>Antes de qualquer coisa, é essencial compreender <em>o tipo de linguagem</em> em que o argumento opera. Usar o método científico para provar ou refutar a existência de Deus é um <strong>erro de categoria</strong> — como tentar usar um termômetro para medir a profundidade de um sentimento.</p>
+      </div>
+      <div class="reveal">
+        <div class="g2">
+          <div class="cc blue">
+            <div class="cc-tag">Ciência experimental</div>
+            <div class="cc-title">O mundo mensurável</div>
+            <div class="cc-body">Estuda fenômenos físicos, repetíveis e quantificáveis. Extraordinariamente eficaz — para aquilo que é material e espacial. Pressupõe leis, causalidade e uniformidade da natureza como pontos de partida, sem os demonstrar.</div>
+          </div>
+          <div class="cc amber">
+            <div class="cc-tag">Metafísica</div>
+            <div class="cc-title">O fundamentalmente real</div>
+            <div class="cc-body">Investiga os princípios mais básicos de toda realidade — anteriores e mais fundamentais que a física. São Tomás a chama de "ciência primeira": estuda o ser enquanto ser, não apenas o ser enquanto físico.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p>Aristóteles já distinguia <em>physikē</em> (investigação da natureza) e <em>prōtē philosophia</em> (filosofia primeira). A física era subordinada — a metafísica estudava os princípios que tornam a física possível.</p>
+        <div class="box">
+          <div class="box-label lx">Analogia precisa</div>
+          <p>A régua não mede o amor. Não porque o amor não exista, mas porque a ferramenta é imprópria para esse objeto. Da mesma forma, o telescópio mapeia galáxias — mas Deus, se existe, não é uma galáxia. É o que tornou possível que galáxias existam. Buscar Deus com instrumentos físicos é como buscar a causa do teatro dentro do palco.</p>
+        </div>
+        <div class="box">
+          <div class="box-label lo">Atenção</div>
+          <p>Isso não é uma crítica à ciência — é uma defesa do método científico. A ciência é soberana em seu domínio. O ponto é que ela não foi desenhada para perguntas sobre o que fundamenta a existência do próprio espaço, do tempo e das leis naturais.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 CONCEITOS -->
+    <section class="panel" id="conceitos">
+      <div class="reveal">
+        <div class="tag">O vocabulário do argumento</div>
+        <h2>Potência e Ato — <em>Dynamis</em> e <em>Energeia</em></h2>
+        <p>Aristóteles cria dois conceitos técnicos para descrever a estrutura de toda a realidade mutável. Sem entendê-los, o argumento parece obscuro. Com eles, torna-se uma dedução de clareza quase geométrica.</p>
+      </div>
+      <div class="reveal">
+        <div class="g2">
+          <div class="cc blue">
+            <div class="cc-tag">Potência · Dynamis (δύναμις)</div>
+            <div class="cc-title">O possível real</div>
+            <div class="cc-body">O que algo <em>pode ser</em>, mas ainda não é. Não uma fantasia — uma possibilidade genuína enraizada na natureza da coisa. A semente tem a potência de ser árvore: isso é real agora, mesmo a árvore não existindo ainda.</div>
+          </div>
+          <div class="cc amber">
+            <div class="cc-tag">Ato · Energeia (ἐνέργεια)</div>
+            <div class="cc-title">O efetivamente real</div>
+            <div class="cc-body">O que algo <em>é de fato agora</em>. Realizado, atualizado, presente. "Energeia" — daí nossa palavra energia — é literalmente "estar em obra", em plena atividade de ser o que se é.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p>O <strong>"movimento"</strong> no vocabulário aristotélico não significa apenas locomoção. Significa <em>qualquer</em> passagem da potência ao ato — crescer, aquecer, aprender, amadurecer. Tudo que se transforma está em "movimento" nesse sentido mais amplo.</p>
+        <div class="box">
+          <div class="box-label lx">Exemplos concretos</div>
+          <p><strong>A semente de carvalho:</strong> Está em potência de ser uma árvore de dez metros. A árvore adulta é o ato da semente.</p>
+          <p><strong>A água a 20°C:</strong> Está em potência de ferver. A água a 100°C borbulhando está em ato de fervura.</p>
+          <p><strong>O estudante de medicina:</strong> Está em potência de saber cirurgia. O médico formado está em ato desse saber.</p>
+          <p><strong>O mármore e a estátua:</strong> O bloco de mármore está em potência de ser uma estátua. A estátua esculpida é esse ato realizado pelo escultor — e pelo cinzel em ato de cortar.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="div"><div class="div-g">◆</div></div>
+        <h3>Por que esses conceitos são universais</h3>
+        <p>Aristóteles observa que esses conceitos não descrevem apenas alguns fenômenos — descrevem <em>toda</em> a realidade mutável. Tudo no universo material existe em tensão entre o que é e o que pode vir a ser. Isso não é uma hipótese empírica — é uma estrutura lógica da realidade que a própria ciência pressupõe ao falar de "estados", "processos" e "transformações".</p>
+      </div>
+    </section>
+
+    <!-- 04 CAUSALIDADE -->
+    <section class="panel" id="causalidade">
+      <div class="reveal">
+        <div class="tag">O princípio nuclear</div>
+        <h2>Nada passa da potência ao ato por si mesmo</h2>
+        <p>Esta é a pedra angular de todo o argumento. Aristóteles enuncia com precisão: <strong>um ser em potência não pode atualizar-se a si mesmo</strong>. Sempre requer um ser já em ato que o mova.</p>
+      </div>
+      <div class="reveal">
+        <blockquote>
+          <p>"Para um ser passar da potência ao ato por si mesmo, teria que ser potência e ato ao mesmo tempo, sob o mesmo aspecto — o que é ontologicamente impossível."</p>
+          <cite>Basilíade — Revista de Filosofia, v.6, n.11, 2024</cite>
+        </blockquote>
+      </div>
+      <div class="reveal">
+        <div class="box">
+          <div class="box-label lx">Por que é impossível ser potência e ato simultaneamente?</div>
+          <p>Seria uma contradição direta. Dizer que a água fria se aquece a si mesma é dizer que ela é <em>ao mesmo tempo</em> fria (potência de ferver) e quente (ato de fervura) — sob o mesmo aspecto, ao mesmo instante. O princípio de não-contradição, fundamento da lógica, proíbe isso. Este princípio não é empírico — é a condição de possibilidade de qualquer raciocínio.</p>
+        </div>
+        <div class="box">
+          <div class="box-label lx">Exemplos do princípio em ação</div>
+          <p><strong>O fogo e a lenha:</strong> A lenha está em potência de queimar — mas não se incendeia sozinha. Precisa de algo já em ato de fogo. A chama transfere seu ato à lenha.</p>
+          <p><strong>O professor e o estudante:</strong> O estudante tem potência de saber filosofia, mas esse potencial não vira conhecimento sem um professor (em ato desse saber) ou livros (em ato de conter esse saber).</p>
+          <p><strong>A equação de Newton:</strong> F = ma diz, em linguagem contemporânea, exatamente o mesmo princípio: nada muda de velocidade sem uma força externa. Sempre um ato externo é necessário para actualizar uma potência.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>O que isso descarta: a espontaneidade absoluta</h3>
+        <p>O princípio descarta que algo surja do nada, sem qualquer causa. Não é apenas um problema teológico — é um problema para a razão humana como um todo.</p>
+        <div class="box">
+          <div class="box-label lo">Sobre flutuações quânticas</div>
+          <p>A física quântica é citada como exceção — partículas "surgem do nada". Mas como adverte o cosmólogo <strong>Christopher Isham</strong>: é preciso tomar cuidado com a palavra "nada". As flutuações quânticas ocorrem dentro de campos quânticos, sujeitas a leis físicas, dentro do espaço-tempo estruturado. O "vácuo quântico" é um estado físico altamente organizado — não o nada absoluto da filosofia. A espontaneidade parcial (dentro de leis pré-existentes) não elimina a questão da causalidade última.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 CADEIA -->
+    <section class="panel" id="cadeia">
+      <div class="reveal">
+        <div class="tag">O argumento em movimento</div>
+        <h2>A cadeia causal do cosmos</h2>
+        <p>Toda coisa no universo está em movimento — passando de potência a ato. Cada passagem exige um ato anterior que a cause. Isso forma uma cadeia de dependência ontológica:</p>
+      </div>
+      <div class="reveal">
+        <div class="chain">
+          <div class="cn cn-a">Ato A</div><div class="cn-arr">→</div>
+          <div class="cn cn-p">Potência B</div><div class="cn-arr">→</div>
+          <div class="cn cn-a">Ato B</div><div class="cn-arr">→</div>
+          <div class="cn cn-p">Potência C</div><div class="cn-arr">→</div>
+          <div class="cn cn-a">Ato C</div><div class="cn-arr">→</div>
+          <span style="color:var(--stone-l);font-size:1.5rem">···</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>Pode essa série ser infinita?</h3>
+        <p>Aristóteles e São Tomás respondem: não — ao menos no tipo de série que importa para o argumento. É preciso distinguir dois tipos de séries causais:</p>
+        <div class="g2">
+          <div class="cc green">
+            <div class="cc-tag">Séries acidentalmente ordenadas</div>
+            <div class="cc-title">Podem ser infinitas</div>
+            <div class="cc-body">Série histórica: avô → pai → filho. Cada membro existiu separadamente. São Tomás não prova filosoficamente que o cosmos teve início temporal — aceita isso pela fé. O argumento não depende de um primeiro momento no passado.</div>
+          </div>
+          <div class="cc red">
+            <div class="cc-tag">Séries essencialmente ordenadas</div>
+            <div class="cc-title">Não podem ser infinitas</div>
+            <div class="cc-body">Série simultânea: a mão move o bastão que move a pedra <em>agora</em>. Cada membro depende do anterior <em>neste instante</em> para exercer sua causalidade. Uma regressão infinita aqui é impossível: seria uma série onde ninguém tem poder causal próprio.</div>
+          </div>
+        </div>
+        <p>O argumento de São Tomás opera com <strong>séries essencialmente ordenadas</strong>: não é sobre o passado distante, mas sobre o que sustenta a existência de tudo a <em>cada instante presente</em>.</p>
+      </div>
+      <div class="reveal">
+        <blockquote>
+          <p>"Para não ir ao infinito na sequência de causas, é preciso admitir uma primeira causa, por sua vez incausada, um ser necessário — e não contingente."</p>
+          <cite>Filosofia a Arte do Conhecimento — sobre a Metafísica de Aristóteles</cite>
+        </blockquote>
+        <div class="box">
+          <div class="box-label lx">A analogia do trem</div>
+          <p>Um trem em que cada vagão se move porque o anterior o empurra — mas nenhum tem motor próprio. Por mais vagões que adicione (inclusive infinitos), o trem jamais andará. Precisa de uma locomotiva. Uma série causal infinita onde nenhum membro tem poder causal próprio não é uma solução — é um adiamento infinito do problema.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 CONCLUSÃO -->
+    <section class="panel" id="conclusao">
+      <div class="reveal">
+        <div class="tag">A Primeira Via · São Tomás de Aquino</div>
+        <h2>O Ato Puro — e por que se chama Deus</h2>
+        <p>Se a cadeia causal essencialmente ordenada precisa de um fundamento, esse fundamento deve ser um <strong>Ato Puro</strong> — algo que sustenta tudo sem ser sustentado por nada. Sem potência alguma: plenamente em ato, de modo absoluto.</p>
+      </div>
+      <div class="reveal">
+        <div class="ag">
+          <div class="at"><div class="at-t">Imóvel</div><div class="at-b">Não passa de potência a ato — não tem potência. É o fundamento do movimento, não mais um movimento.</div></div>
+          <div class="at"><div class="at-t">Eterno</div><div class="at-b">O que está em movimento é transitório. O Ato Puro não transita. Não pode surgir nem perecer — não tem potência de não-ser.</div></div>
+          <div class="at"><div class="at-t">Imaterial</div><div class="at-b">Toda matéria está em potência — pode ser dividida, aquecida, transformada. O Ato Puro é, por definição, não-material.</div></div>
+          <div class="at"><div class="at-t">Anterior ao espaço-tempo</div><div class="at-b">É a causa do espaço e do tempo. Não está dentro do espaço-tempo — existe além, de modo atemporal.</div></div>
+          <div class="at"><div class="at-t">Princípio de ordem</div><div class="at-b">O cosmos tem leis e padrões. Ordem pressupõe um princípio ordenador inteligente — é ato de inteligência, segundo Aristóteles.</div></div>
+          <div class="at"><div class="at-t">Único</div><div class="at-b">Dois "primeiros absolutos" se contradizem. Se houvesse dois, um limitaria o outro — e nenhum seria absolutamente Ato Puro.</div></div>
+          <div class="at"><div class="at-t">Causa esse, não só fieri</div><div class="at-b">São Tomás: Deus não é apenas a causa que deu início ao cosmos, mas a causa que sustenta sua existência a cada instante.</div></div>
+          <div class="at"><div class="at-t">Pensamento do pensamento</div><div class="at-b">Aristóteles: "noēsis noēseōs" — o Ato Puro pensa a si mesmo. Sua atividade é a contemplação pura de sua própria perfeição.</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <blockquote>
+          <p>"Deus é ato puro, primeiro motor, eterno e imóvel, pensamento do pensamento. Ora, Deus não é possuidor da vida, mas é a própria vida, ato puro, e a contemplação de Deus é o fim e o ideal de toda vida."</p>
+          <cite>Aristóteles — Metafísica XII, comentado na Revista Newton Paiva</cite>
+        </blockquote>
+        <div class="chain" style="justify-content:center;flex-direction:column;gap:10px;align-items:center">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center">
+            <div class="cn cn-p">Tudo muda</div><div class="cn-arr">→</div>
+            <div class="cn cn-a">Exige ato anterior</div><div class="cn-arr">→</div>
+            <div class="cn cn-a">Cadeia não pode ser infinita</div>
+          </div>
+          <div class="cn-arr" style="font-size:1.8rem">↓</div>
+          <div class="cn cn-pure" style="padding:12px 28px;font-size:1.05rem">Ato Puro · Imóvel · Eterno · Imaterial = Deus (definição filosófica)</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="box"><div class="box-label lo">O que este argumento não prova</div>
+          <p>A conclusão é: existe um ser eterno, imaterial, anterior ao cosmos, princípio de ordem. Isso <strong>não é o mesmo que</strong> provar o Deus cristão, islâmico, judaico, ou qualquer religião específica. O Deus aristotélico é "pensamento que pensa a si mesmo" — não um Criador pessoal que ama os humanos. São Tomás usa o argumento como ponto de partida filosófico, e depois apela à revelação para o conteúdo teológico.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 DEBATE 1948 -->
+    <section class="panel" id="debate">
+      <div class="reveal">
+        <div class="tag">Filosofia contemporânea</div>
+        <h2>O debate Copleston–Russell · BBC, 1948</h2>
+        <p>Em 28 de janeiro de 1948, dois dos maiores filósofos do século XX se encontraram ao microfone da BBC Third Programme. O jesuíta <strong>Frederick Copleston</strong> — autor da mais abrangente <em>História da Filosofia</em> do século — defendeu o argumento cosmológico. Do outro lado, o matemático e filósofo <strong>Bertrand Russell</strong>, agnóstico declarado.</p>
+        <p>Segundo os filósofos Graham Oppy e Nick Trakakis, o debate "tipifica os argumentos apresentados por teístas e ateus na segunda metade do século XX".</p>
+      </div>
+      <div class="reveal">
+        <h3>A posição de Copleston</h3>
+        <p>Copleston apresentou uma versão centrada na <strong>contingência</strong>: o universo é contingente (poderia não existir), portanto requer uma causa necessária externa. Seguindo São Tomás, distinguia <em>causa fieri</em> e <em>causa esse</em>: não se trata de uma primeira causa meramente temporal, mas de uma causa ontológica que sustenta o cosmos a cada instante.</p>
+        <blockquote>
+          <p>"Copleston apresenta Deus não como uma causa temporal primeira, mas como uma causa ontologicamente última — necessária para explicar um universo contingente. Sua contribuição mudou a maneira como lemos Aquino."</p>
+          <cite>ResearchGate — A Metafísica de Copleston e o debate com Russell, 2021</cite>
+        </blockquote>
+      </div>
+      <div class="reveal">
+        <h3>A posição de Russell</h3>
+        <p>Russell respondeu com o argumento do <em>brute fact</em> (fato bruto): o universo simplesmente existe, sem precisar de explicação adicional. O princípio de causalidade é válido apenas dentro do mundo empírico — aplicá-lo ao universo como um todo seria extrapolar seu domínio.</p>
+        <blockquote>
+          <p>"Pode-se às vezes dar uma explicação causal de uma coisa como sendo o efeito de outra — mas isso é simplesmente referir uma coisa a outra. Não há explicação última no sentido de Copleston, nem sentido em chamar as coisas de 'contingentes'."</p>
+          <cite>Bertrand Russell — Debate na BBC, 1948</cite>
+        </blockquote>
+      </div>
+      <div class="reveal">
+        <h3>O resultado: impasse filosófico honesto</h3>
+        <p>O debate terminou, por consenso histórico, em impasse. A posição de Russell — o universo como fato bruto sem explicação — é logicamente consistente, mas também é uma tomada de posição filosófica, não uma refutação.</p>
+        <div class="box"><div class="box-label lo">O ponto central do impasse</div>
+          <p>Copleston pergunta: <em>por que há algo e não nada?</em> Russell responde que o universo simplesmente está aí, sem precisar de mais explicação. Copleston aponta que essa é uma recusa de explicação, não uma explicação. Russell contesta que a exigência de explicação não se aplica ao universo inteiro. Nenhum dos dois convenceu o outro — e esse impasse ainda define o debate hoje.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>O argumento Kalam — a versão contemporânea</h3>
+        <p>No século XX, o filósofo americano <strong>William Lane Craig</strong> revitalizou o argumento cosmológico em sua forma <em>Kalam</em> (originalmente do teólogo islâmico Al-Ghazali, 1058–1111), articulando-o com a cosmologia moderna:</p>
+        <div class="box"><div class="box-label ls">Estrutura do argumento Kalam</div>
+          <p><strong>Premissa 1:</strong> Tudo que começa a existir tem uma causa.</p>
+          <p><strong>Premissa 2:</strong> O universo começou a existir (confirmado pelo modelo padrão do Big Bang).</p>
+          <p><strong>Conclusão:</strong> O universo tem uma causa — atemporal, imaterial e imensamente poderosa.</p>
+        </div>
+        <p>O Kalam é distinto do argumento aristotélico (que não depende de um início temporal), mas compartilha o núcleo: a causalidade não pode ser infinita ou autossuficiente. Sua vantagem é articular-se com a ciência moderna; sua desvantagem, depender de premissas científicas que podem ser revisadas.</p>
+      </div>
+    </section>
+
+    <!-- 08 OBJEÇÕES -->
+    <section class="panel" id="objecoes">
+      <div class="reveal">
+        <div class="tag">Análise crítica rigorosa</div>
+        <h2>As grandes objeções e suas respostas</h2>
+        <p>Todo argumento filosófico maduro deve encarar suas melhores objeções. Aqui estão as cinco mais robustas — das históricas (Hume, Kant) às contemporâneas.</p>
+      </div>
+      <div class="reveal">
+        <div class="obj">
+          <div class="obj-h"><span class="obj-n">01 · Hume</span><span class="obj-q">"A causalidade é apenas um hábito mental — não uma necessidade lógica."</span></div>
+          <div class="obj-b">
+            <p>David Hume argumentou que a causalidade não é uma relação necessária entre as coisas, mas uma expectativa psicológica formada pela experiência repetida. Se a causalidade é apenas habitual, não há base para exigir uma Causa Primeira.</p>
+            <p><strong>Resposta tomista:</strong> Aristóteles e São Tomás não derivam a causalidade da experiência — derivam-na do princípio de não-contradição: um ser em potência não pode ser e não-ser sob o mesmo aspecto ao mesmo tempo. Isso não é um hábito — é uma necessidade lógica. Além disso, a própria crítica de Hume pressupõe que suas premissas <em>causam</em> sua conclusão — o que seria autorrefutação se a causalidade não existisse.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="obj-h"><span class="obj-n">02 · Kant</span><span class="obj-q">"A causalidade tem validade apenas no mundo sensível — não pode ser aplicada além dele."</span></div>
+          <div class="obj-b">
+            <p>Kant argumentou na <em>Crítica da Razão Pura</em> que as categorias do entendimento — inclusive causalidade — são formas de organizar a experiência sensível. Aplicá-las além da experiência seria uma "ilusão transcendental".</p>
+            <p><strong>Resposta:</strong> A crítica de Kant funciona bem contra argumentos cosmológicos de estilo empirista. Funciona menos bem contra o argumento aristotélico-tomista, que não deriva a causalidade da experiência sensível, mas do princípio de não-contradição — anterior a qualquer experiência. Uma dissertação recente de mestrado na UFPA (2025) argumenta que "a objeção de Kant falha em demonstrar a impossibilidade" dos argumentos teístas de razão teórica.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="obj-h"><span class="obj-n">03 · Russell</span><span class="obj-q">"O universo pode ser um fato bruto — simplesmente existir, sem precisar de explicação."</span></div>
+          <div class="obj-b">
+            <p>O universo simplesmente <em>está aí</em>, e essa existência não precisa de justificação adicional. A pergunta "por que há algo e não nada?" pode não ter resposta — e isso seria aceitável.</p>
+            <p><strong>Resposta:</strong> O tomista aceita que Russell é logicamente consistente. Mas afirmar que o universo é um fato bruto é também uma tomada de posição metafísica — não uma posição neutra. Além disso, o argumento de São Tomás não é apenas sobre a origem do cosmos: é sobre o que o sustenta a cada instante. Um universo eterno e sem causa continua sendo um conjunto de seres contingentes que agora precisam de um fundamento necessário.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="obj-h"><span class="obj-n">04 · Física quântica</span><span class="obj-q">"Partículas surgem espontaneamente — a causalidade não é universal."</span></div>
+          <div class="obj-b">
+            <p>A mecânica quântica e o princípio da incerteza de Heisenberg parecem mostrar eventos sem causa determinada. Se a causalidade não é universal, o argumento perde seu fundamento.</p>
+            <p><strong>Resposta:</strong> Como adverte Christopher Isham, as flutuações quânticas não ocorrem no "nada" filosófico — ocorrem dentro de campos quânticos, sujeitas a equações, dentro do espaço-tempo. Esse "vácuo" é um estado físico estruturado. Além disso, como aponta Craig, "nem todos os físicos subscrevem o indeterminismo da Interpretação de Copenhague" — há interpretações deterministas (como a de David Bohm) igualmente respeitáveis na comunidade científica.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="obj-h"><span class="obj-n">05 · "Quem criou Deus?"</span><span class="obj-q">"Se tudo precisa de causa, Deus também precisa — o argumento aplica-se a si mesmo."</span></div>
+          <div class="obj-b">
+            <p>Esta é possivelmente a objeção mais popular. Se o argumento exige uma causa para tudo que existe, então Deus também precisaria de uma causa.</p>
+            <p><strong>Resposta:</strong> A objeção comete uma falácia de equivocidade. O argumento não diz que <em>tudo</em> precisa de causa — diz que <em>todo ser em potência</em> precisa de um ato que o actualize. O Ato Puro, por definição, não tem potência — portanto não se aplica a ele a exigência de causa. Perguntar "quem criou o Ato Puro" é como perguntar "o que há ao norte do Polo Norte". A pergunta pressupõe que Deus é um ser em potência, o que contradiz a premissa. O argumento não postula um Deus dentro da série causal — postula seu fundamento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 LIMITES -->
+    <section class="panel" id="limites">
+      <div class="reveal">
+        <div class="tag">Honestidade filosófica</div>
+        <h2>O que o argumento prova — e o que não prova</h2>
+        <p>Uma das marcas da boa filosofia é conhecer os limites do próprio argumento. O argumento do Primeiro Motor é poderoso — mas não é uma prova completa de toda teologia.</p>
+      </div>
+      <div class="reveal">
+        <div class="g2">
+          <div class="cc green">
+            <div class="cc-tag">Estabelecido (se as premissas forem aceitas)</div>
+            <div class="cc-title">Existe um Ato Puro</div>
+            <div class="cc-body">Um ser eterno, imaterial, anterior ao espaço-tempo, princípio de toda ordem e movimento, único. Esse é o Deus filosófico — a causa ontológica última da existência.</div>
+          </div>
+          <div class="cc red">
+            <div class="cc-tag">Não estabelecido por este argumento</div>
+            <div class="cc-title">O Deus pessoal e revelado</div>
+            <div class="cc-body">Que Deus ama os humanos, que se revelou em escrituras, que ouve orações. Esses são conteúdos teológicos que vão além do que o argumento filosófico prova. O Deus aristotélico é "pensamento do pensamento" — não o Deus Pai do Novo Testamento.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="box"><div class="box-label lo">A diferença entre Aristóteles e São Tomás</div>
+          <p>Para <strong>Aristóteles</strong>, o Motor Imóvel não é Criador — o cosmos é eterno e o Deus aristotélico o atrai para si como causa final, como um amado que atrai o amante sem mover-se. Para <strong>São Tomás</strong>, Deus é também causa eficiente e criador <em>ex nihilo</em> — o cosmos teve início e Deus o criou do nada. São Tomás usa Aristóteles como ponto de partida filosófico e vai além pela fé revelada. Essa distinção é essencial para não atribuir ao argumento filosófico mais do que ele sustenta.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>As premissas que podem ser contestadas</h3>
+        <p>Qualquer argumento dedutivo é tão forte quanto suas premissas. Quem quiser refutar o argumento deve atacar uma destas:</p>
+        <div class="box"><div class="box-label ls">Pontos de ataque filosófico legítimo</div>
+          <p><strong>1. O princípio de causalidade:</strong> Pode-se argumentar (como Hume) que a causalidade não é necessidade lógica. Se aceito, o argumento perde o fundamento — mas também a ciência perde muito do seu.</p>
+          <p><strong>2. A impossibilidade de regressão infinita:</strong> Alguns filósofos (como Graham Oppy) argumentam que uma série causal infinita é concebivelmente possível. Se aceita, não se força uma primeira causa.</p>
+          <p><strong>3. A aplicabilidade da causalidade ao cosmos:</strong> Kant argumenta que a causalidade é categoria do entendimento aplicável só à experiência — aplicá-la ao universo inteiro seria extrapolação ilegítima.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="div"><div class="div-g">◆</div></div>
+        <h3>Por que o argumento ainda importa</h3>
+        <p>Mesmo com todos os seus limites e objeções, o argumento permanece relevante porque as respostas contrárias mais comuns — o universo como fato bruto, a regressão infinita aceitável, a causalidade como mero hábito — também carregam seus próprios problemas filosóficos não resolvidos. O debate não está encerrado.</p>
+        <blockquote>
+          <p>"Todos os argumentos teístas clássicos, incluindo argumentos cosmológicos, têm defensores capazes hoje. Há pessoas inteligentes em ambos os lados do debate."</p>
+          <cite>William Lane Craig — ReasonableFaith.org</cite>
+        </blockquote>
+        <div class="box"><div class="box-label ls">Para aprofundar</div>
+          <p><strong>Fontes primárias:</strong> Aristóteles, <em>Metafísica</em>, Livro XII (Lambda) · São Tomás de Aquino, <em>Suma Teológica</em>, I, q.2, a.3 · São Tomás de Aquino, <em>Suma contra os Gentios</em>, Livro I</p>
+          <p><strong>Secundárias clássicas:</strong> Frederick Copleston, <em>História da Filosofia</em> (vols. I e II) · Étienne Gilson, <em>El tomismo</em> · Giovanni Reale, <em>Introdução a Aristóteles</em></p>
+          <p><strong>Debate contemporâneo:</strong> Transcrição do debate Copleston–Russell (BBC, 1948) · William Lane Craig, <em>The Kalām Cosmological Argument</em> (1979) · Graham Oppy, <em>Arguing about Gods</em> (2006)</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>Baseado no debate com o Prof. Guilherme Freire · <a href="https://youtu.be/hOpSossU2Eo" target="_blank" rel="noopener">TV Debates (YouTube) ↗</a></p>
+  <p>Fontes: Aristóteles, <em>Metafísica</em> · São Tomás de Aquino, <em>Suma Teológica</em> · Debate Copleston–Russell, BBC 1948 · W. L. Craig, <em>Kalam Cosmological Argument</em> · Basilíade, Revista de Filosofia v.6 n.11 (2024)</p>
+  <p style="margin-top:12px;opacity:.4">Filosofia · Metafísica · Apologética</p>
+</footer>
+
+<script>
+  const panels=document.querySelectorAll('.panel');
+  const btns=document.querySelectorAll('.nav-btn');
+  const prog=document.getElementById('prog');
+  const N=btns.length;
+
+  for(let i=0;i<N;i++){
+    const d=document.createElement('span');
+    d.className='dot'+(i===0?' on':'');
+    prog.appendChild(d);
+  }
+  const dots=prog.querySelectorAll('.dot');
+
+  function reveal(panelEl){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}
+      });
+    },{threshold:0.07});
+    panelEl.querySelectorAll('.reveal:not(.show)').forEach(el=>obs.observe(el));
+  }
+
+  function go(id,idx){
+    panels.forEach(p=>p.classList.remove('on'));
+    btns.forEach(b=>b.classList.remove('on'));
+    dots.forEach((d,i)=>d.classList.toggle('on',i<=idx));
+    const panel=document.getElementById(id);
+    panel.classList.add('on');
+    document.querySelector('[data-p="'+id+'"]').classList.add('on');
+    document.getElementById('nav').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>reveal(panel),60);
+  }
+
+  btns.forEach((btn,idx)=>{btn.addEventListener('click',()=>go(btn.dataset.p,idx));});
+
+  document.addEventListener('keydown',e=>{
+    const cur=Array.from(btns).findIndex(b=>b.classList.contains('on'));
+    if(e.key==='ArrowRight'&&cur<N-1)go(btns[cur+1].dataset.p,cur+1);
+    if(e.key==='ArrowLeft'&&cur>0)go(btns[cur-1].dataset.p,cur-1);
+  });
+
+  reveal(document.querySelector('.panel.on'));
+</script>
+</body>
+</html>
