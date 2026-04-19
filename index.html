@@ -1,173 +1,203 @@
-﻿
----
-
-## Prompt padrão — design do site
-
----
-
-> Crie um site HTML interativo, responsivo para desktop e celular, em um único arquivo `.html` autocontido (sem arquivos externos além das fontes do Google Fonts), com o seguinte design e funcionalidades:
->
-> ---
->
-> **Estética geral:**
-> Tema escuro e elegante. Fundo quase preto (`#0d0a04`). Texto principal em branco puro (`#ffffff`). Tipografia com fontes do Google Fonts: **Cinzel Decorative** (títulos grandes/decorativos), **Cinzel** (subtítulos, labels, navegação) e **EB Garamond** (corpo do texto, citações em itálico). Tamanho de fonte base generoso — corpo com `clamp(1.15rem, 2.5vw, 1.35rem)` — para garantir boa legibilidade em celular.
->
-> ---
->
-> **Variáveis CSS:**
-> ```css
-> :root {
->   --cor-destaque: #ffffff;
->   --cor-texto: #ffffff;
->   --cor-secundario: #bbbbbb;
->   --fundo: #0d0a04;
->   --fundo-card: rgba(255,255,255,0.05);
->   --borda: rgba(255,255,255,0.18);
-> }
-> ```
->
-> ---
->
-> **Estrutura de página:**
->
-> **1. Hero fullscreen** com:
-> - Símbolo/emoji centralizado com animação de flutuação suave — usar **apenas `transform: translateY()`** no keyframe (nunca animar `filter` ou `height` pois causam balanço/reflow na página)
-> - Linha de categoria em letras maiúsculas com `letter-spacing` amplo
-> - Título H1 grande em Cinzel Decorative
-> - Subtítulo em itálico
-> - Nome do autor
-> - Seta animada de "rolar para baixo" — animar apenas `opacity` e `transform: scaleY()`, nunca `height`
->
-> **2. Barra de navegação fixa** (`position: sticky`, `top: 0`) com:
-> - Botões para cada seção do conteúdo
-> - Scroll horizontal em mobile (`overflow-x: auto`, `scrollbar-width: none`)
-> - Destaque branco no botão da seção atualmente visível
-> - `id="mainNav"` obrigatório para o cálculo de scroll
->
-> **3. Barra de progresso de leitura** fina (`height: 2px`) no topo da página, preenchida proporcionalmente ao scroll, com `id="progressBar"`
->
-> **4. Seções de conteúdo** (`class="section"`, `id="nome-da-secao"`, `data-nav="índice"`) com entrada animada via IntersectionObserver (fade + slide up). Cada seção pode conter os seguintes componentes:
-> - **Bloco de citação** — borda esquerda branca, aspas decorativas, texto em itálico, referência em Cinzel
-> - **Grid de cards** — borda branca sutil, ícone emoji, título em Cinzel, texto — hover com elevação e borda mais visível
-> - **Acordeão** — borda branca, cabeçalho clicável, seta giratória, expansão suave por `max-height`
-> - **Lista de passos/movimentos** — número em círculo com borda branca, animação de entrada sequencial com `translateX` + delay
-> - **Lista de implicações** — ponto branco luminoso, título em caixa alta, parágrafo
-> - **Tags de referências** — clicáveis, tooltip ao hover (posicionado com `position: fixed` para não sair da tela), flash branco ao clicar
->
-> **5. Divisores** entre seções com linha fina e glifo central
->
-> **6. Rodapé** centralizado com símbolo, nome do autor e nota
->
-> **7. Botão "voltar ao topo"** circular com `id="backTop"`, aparece após 400px de scroll
->
-> ---
->
-> **JavaScript — regras críticas:**
->
-> ?? **NUNCA nomear a função de navegação `scrollTo`** — esse nome conflita silenciosamente com o método nativo `window.scrollTo()` do browser e faz os links não funcionarem. Usar sempre um nome próprio, como `irPara()`.
->
-> A função de navegação deve calcular a posição descontando a altura da barra de navegação fixa:
-> ```javascript
-> function irPara(id) {
->   const el = document.getElementById(id);
->   if (!el) return;
->   const navH = document.getElementById('mainNav').offsetHeight;
->   const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
->   window.scrollTo({ top, behavior: 'smooth' });
-> }
-> ```
->
-> Todos os botões da navegação devem chamar `onclick="irPara('id-da-secao')"`.
->
-> O IntersectionObserver deve ter `threshold: 0.08` e acionar as animações de entrada das seções e dos itens de lista sequenciais.
->
-> ---
->
-> **Todo o conteúdo deve vir de:** 
-A Primeira Via (Primeiro Motor Imóvel): um exame crítico e acessível
-Resumo executivo
-A "primeira via" de São Tomás de Aquino — também chamada de argumento do primeiro motor imóvel — afirma que o movimento observado no cosmos requer uma causa primeira não-movente, que seria Deus. Este artigo explica o argumento passo a passo, oferece exemplos simples, discute objeções contemporâneas e acrescenta referências e reflexões encontradas na literatura filosófica e científica moderna.
-
-1. O argumento em termos simples
-Descrição essencial
-
-Tudo o que está em potência tende a passar à atualidade; há movimento (entendido metafisicamente como passagem da potência ao ato).
-Qualquer passagem da potência ao ato requer algo já em ato que atualize essa potência.
-Não é logicamente consistente que exista uma regressão infinita de atualizações; a série causal do movimento exige um início.
-Conclusão: Deve haver um ato puro, que não está em potência de nada (não é sujeito de mudança), que é a causa primeira do movimento — identificado como Deus.
-
-Exemplo simples (analogia do dominó)
-Imagine uma longa fila de dominós. Cada peça só cai se a anterior a empurra: há uma passagem de potencialidade (peça em pé) para atualidade (peça caída). Se não existisse uma primeira peça empurrada, toda a queda seria inexplicada. Transferindo para o universo: algo atualiza a potência; para evitar regressão infinita de causas, postulamos uma causa primeira não causada.
-
-Contexto histórico: formulação presente em Aristóteles e sistematizada por São Tomás na Suma Teológica.
-
-2. Termos-chave explicados com clareza
-Potência e ato: Potência é a capacidade de ser algo (ex.: semente); ato é a realização dessa capacidade (a árvore crescendo).
-Movimento (metafísico): Qualquer passagem de possibilidade para realidade (crescimento, mudança de forma, atualizações causais).
-Ato puro: Entidade sem potencialidade; completamente atual e imutável — por isso não movida por outra coisa.
-Leituras modernas e glossários filosóficos aprofundam essas distinções.
-
-3. Defesa do argumento — por que ele parece plausível
-Intuição causal básica: mudanças são explicadas por causas anteriores; aceitar mudança sem causa contradiz raciocínio prático e científico.
-Coerência cosmológica: ordem e regularidade observadas no cosmos sugerem um princípio ordenante; tradição filosófica liga ordem à inteligência.
-Economia explicativa: postular um início evita regressão infinita que implicaria falta de explicação última.
-Autoria e comentários contemporâneos oferecem defesas que ressaltam a carga explicativa do argumento.
-
-4. Principais objeções e respostas
-Objeção A — Regressão infinita é possível
-Argumento: Uma série infinita de causas é concebível; não há contradição lógica.
-
-Resposta: Mesmo que logicamente possível, regressão infinita falha em oferecer explicação última; a passagem de potência a ato numa série infinita resulta em ausência de causa iniciadora em qualquer posição concreta.
-
-Objeção B — Causa não precisa ser "pessoal" nem inteligente
-Argumento: A causa primeira poderia ser impessoal (lei necessária, estado físico primordial).
-
-Resposta: O argumento aponta para um princípio de ordem; tomistas sustentam que ordem implica inteligência, enquanto críticos defendem que ordem pode emergir de leis físicas.
-
-Objeção C — Ciência torna o argumento obsoleto
-Argumento: Modelos cosmológicos (Big Bang, multiverso) oferecem explicações físicas da origem.
-
-Resposta: O argumento é metafísico: busca explicação última para existência e mudança, não substituível por descrições puramente físicas; debates sobre "por que há algo em vez de nada" permanecem abertos.
-
-Objeção D — Física quântica e causalidade
-Argumento: Eventos quânticos parecem ocorrer sem causa determinística.
-
-Resposta: Causalidade metafísica difere da causalidade determinística física; interpretações das mecânicas quânticas variam, e não há consenso que elimine a necessidade de explicação metafísica última.
-
-5. Versões contemporâneas e reavivações do argumento
-Kalam cosmological argument: Enfatiza que tudo com começo de existência tem causa; o universo teve começo, logo teve causa — debatido por filósofos contemporâneos.
-Abordagens analíticas: Reformulam argumentos em termos de dependência ontológica e contingência para evitar problemas com regressão infinita.
-Várias formulações modernas buscam compatibilizar argumentos cosmológicos com avanços da cosmologia e filosofia analítica.
-
-6. Exemplos didáticos adicionais
-Lâmpada e interruptor: A lâmpada acesa depende do interruptor; seguirmos essa cadeia infinitamente não explica quem a acendeu inicialmente.
-Exemplo biológico: Desenvolvimento depende de causas anteriores (DNA, nutrição); a cadeia remete a condições primeiras que tornam o desenvolvimento possível.
-Esses exemplos ilustram que mudanças e atualizações parecem requerer algo já atual.
-
-7. Avaliação crítica final
-Forças:
-
-Clareza conceitual sobre dependência causal e necessidade de explicação última.
-Tradição filosófica extensa com desenvolvimentos e respostas.
-Compatibilidade com descobertas científicas quando se distingue níveis explicativos.
-Limitações:
-
-Depende da aceitação de princípios metafísicos (p.ex., rejeição prática da regressão infinita).
-Não demonstra atributos específicos de uma divindade teísta sem argumentos adicionais.
-Interpretações alternativas (leis naturais, estados quânticos, multiverso) desafiam a necessidade de um agente pessoal.
-8. Leituras recomendadas e referências selecionadas
-Comentários acadêmicos à Suma Teológica, textos sobre Aristóteles, debates contemporâneos sobre Kalam e artigos que discutem causalidade e física quântica são relevantes para aprofundamento.
-
-Citações agrupadas (resumo de fontes consultadas):
-- Textos clássicos: Aristóteles (Metafísica), São Tomás de Aquino (Suma Theologica).
-- Comentários e introduções contemporâneas sobre metafísica e cosmologia filosófica.
-- Debates modernos: Kalam cosmological argument (William Lane Craig e críticos).
-- Artigos sobre causalidade e mecânica quântica (interpretações e implicações metafísicas).
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Primeira Via | Primeiro Motor Imóvel</title>
     
-9. Conclusão concisa
-A primeira via de São Tomás sustenta que mudanças exigem causas, e uma série causal regressiva não fornece explicação última; portanto, postula-se um ente atual sem potencialidade — o ato puro. O argumento continua relevante por sua clareza metafísica e por estimular debates sobre causalidade e origem do cosmos, mas sua força depende de pressupostos metafísicos e não resolve todas as questões sobre a natureza específica do divino.
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 
-Publicado em 19 de abril de 2026.
+    <style>
+        :root {
+            --cor-destaque: #ffffff;
+            --cor-texto: #ffffff;
+            --cor-secundario: #bbbbbb;
+            --fundo: #0d0a04;
+            --fundo-card: rgba(255,255,255,0.05);
+            --borda: rgba(255,255,255,0.18);
+            --transicao: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
----
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
 
+        body {
+            background-color: var(--fundo);
+            color: var(--cor-texto);
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-item, .label {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        i { font-style: italic; }
+
+        /* --- Barra de Progresso --- */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--cor-destaque);
+            z-index: 1001;
+            transition: width 0.1s ease-out;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-symbol {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .category-line {
+            font-size: 0.8rem;
+            color: var(--cor-secundario);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-style: italic;
+            color: var(--cor-secundario);
+            margin-bottom: 2rem;
+        }
+
+        .author-name {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            border-top: 1px solid var(--borda);
+            padding-top: 1rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: scaleY(1); opacity: 1; }
+            40% { transform: scaleY(1.5); opacity: 0.5; }
+        }
+
+        /* --- Navegação --- */
+        #mainNav {
+            position: sticky;
+            top: 0;
+            background: rgba(13, 10, 4, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--borda);
+            z-index: 1000;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 1rem;
+        }
+
+        #mainNav::-webkit-scrollbar { display: none; }
+
+        .nav-item {
+            padding: 1.2rem 1.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            white-space: nowrap;
+            color: var(--cor-secundario);
+            transition: var(--transicao);
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-item.active {
+            color: var(--cor-destaque);
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        /* --- Conteúdo Geral --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transicao);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Componentes --- */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0;
+            opacity: 0.3;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--cor-texto);
+        }
+
+        .divider span { margin: 0 1.5rem; font-size: 1.2rem; }
+
+        /* Card Grid */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--fundo-card);
+            border: 1px solid var(--borda);
+            padding: 2.5rem;
+            transition: var(--transicao);
+        }
+
+        .card:hover {
