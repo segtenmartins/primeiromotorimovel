@@ -201,3 +201,470 @@
         }
 
         .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cor-destaque);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .card-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+        .card h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+
+        /* Blockquote */
+        blockquote {
+            border-left: 3px solid var(--cor-destaque);
+            padding: 2rem 3rem;
+            margin: 3rem 0;
+            background: var(--fundo-card);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: "“";
+            position: absolute;
+            top: -10px; left: 10px;
+            font-size: 4rem;
+            opacity: 0.2;
+            font-family: 'Cinzel', serif;
+        }
+
+        blockquote p { font-style: italic; margin-bottom: 1rem; }
+        blockquote cite { 
+            display: block; 
+            font-family: 'Cinzel', serif; 
+            font-size: 0.8rem; 
+            text-transform: uppercase;
+        }
+
+        /* Acordeão */
+        .accordion {
+            border-top: 1px solid var(--borda);
+            margin-top: 2rem;
+        }
+
+        .acc-item { border-bottom: 1px solid var(--borda); }
+
+        .acc-header {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .acc-header h3 { font-size: 1rem; margin: 0; }
+
+        .acc-icon {
+            transition: transform 0.4s ease;
+            font-size: 0.8rem;
+        }
+
+        .acc-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            color: var(--cor-secundario);
+        }
+
+        .acc-item.open .acc-content {
+            max-height: 1000px;
+            transition: max-height 1s ease-in;
+            padding-bottom: 2rem;
+        }
+
+        .acc-item.open .acc-icon { transform: rotate(180deg); }
+
+        /* Passos/Movimentos */
+        .steps-list { margin: 3rem 0; }
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: var(--transicao);
+        }
+
+        .step.visible { opacity: 1; transform: translateX(0); }
+
+        .step-num {
+            min-width: 50px;
+            height: 50px;
+            border: 1px solid var(--cor-destaque);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+        }
+
+        /* Implicações */
+        .impl-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .impl-item::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0.6rem;
+            width: 8px; height: 8px;
+            background: var(--cor-destaque);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cor-destaque);
+        }
+
+        .impl-title {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tags e Tooltips */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--borda);
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transicao);
+            position: relative;
+        }
+
+        .tag:hover { background: var(--cor-destaque); color: var(--fundo); }
+        .tag:active { background: #fff; filter: brightness(1.5); }
+
+        .tooltip {
+            position: fixed;
+            background: #fff;
+            color: #000;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2000;
+            max-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'EB Garamond', serif;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* Botão Voltar ao Topo */
+        #backTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--fundo);
+            border: 1px solid var(--borda);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transicao);
+            z-index: 999;
+        }
+
+        #backTop.show { opacity: 1; visibility: visible; }
+        #backTop:hover { border-color: #fff; transform: scale(1.1); }
+
+        footer {
+            padding: 6rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--borda);
+            color: var(--cor-secundario);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .step { flex-direction: column; gap: 1rem; }
+            blockquote { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progressBar"></div>
+
+    <section id="hero">
+        <div class="hero-symbol">⚪</div>
+        <div class="category-line">Metafísica Teísta</div>
+        <h1>A Primeira Via</h1>
+        <p class="hero-subtitle">O argumento do Primeiro Motor Imóvel de São Tomás de Aquino</p>
+        <div class="author-name">Resumo Executivo</div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <nav id="mainNav">
+        <div class="nav-item" onclick="irPara('resumo')">Resumo</div>
+        <div class="nav-item" onclick="irPara('argumento')">O Argumento</div>
+        <div class="nav-item" onclick="irPara('termos')">Conceitos</div>
+        <div class="nav-item" onclick="irPara('defesa')">Defesa</div>
+        <div class="nav-item" onclick="irPara('objecoes')">Objeções</div>
+        <div class="nav-item" onclick="irPara('modernidade')">Modernidade</div>
+        <div class="nav-item" onclick="irPara('avaliacao')">Avaliação</div>
+    </nav>
+
+    <main class="container">
+        
+        <section id="resumo" class="section" data-nav="Resumo">
+            <h2>Resumo Executivo</h2>
+            <p>A "primeira via" de São Tomás de Aquino — também chamada de argumento do primeiro motor imóvel — afirma que o movimento observado no cosmos requer uma causa primeira não-movente, que seria Deus.</p>
+            <p>Este artigo explica o argumento passo a passo, oferece exemplos simples, discute objeções contemporâneas e acrescenta referências encontradas na literatura filosófica e científica moderna.</p>
+        </section>
+
+        <div class="divider"><span>⚜</span></div>
+
+        <section id="argumento" class="section" data-nav="O Argumento">
+            <h2>O Argumento em Termos Simples</h2>
+            <div class="steps-list">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <p>Tudo o que está em <b>potência</b> tende a passar à <b>atualidade</b>; há movimento (entendido como passagem da potência ao ato).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num 02">02</div>
+                    <div class="step-content">
+                        <p>Qualquer passagem da potência ao ato requer algo já em ato que atualize essa potência.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <p>Não é logicamente consistente que exista uma regressão infinita de atualizações; a série causal exige um início.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <div class="step-content">
+                        <p><b>Conclusão:</b> Deve haver um Ato Puro, que não é sujeito de mudança, causa primeira do movimento — identificado como Deus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <blockquote>
+                <p>Imagine uma longa fila de dominós. Cada peça só cai se a anterior a empurra. Se não existisse uma primeira peça empurrada, toda a queda seria inexplicada.</p>
+                <cite>Analogia Clássica do Movimento</cite>
+            </blockquote>
+        </section>
+
+        <section id="termos" class="section" data-nav="Conceitos">
+            <h2>Termos-Chave</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <span class="card-icon">🌱</span>
+                    <h3>Potência e Ato</h3>
+                    <p>Potência é a capacidade de ser algo (ex: semente); Ato é a realização dessa capacidade (a árvore).</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌀</span>
+                    <h3>Movimento</h3>
+                    <p>Metafisicamente, é qualquer passagem de possibilidade para realidade (crescimento, mudança de forma).</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💎</span>
+                    <h3>Ato Puro</h3>
+                    <p>Entidade sem potencialidade; completamente atual e imutável — por isso não movida por outra coisa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="defesa" class="section" data-nav="Defesa">
+            <h2>Por que o argumento é plausível?</h2>
+            <div class="impl-item">
+                <span class="impl-title">Intuição Causal Básica</span>
+                <p>Mudanças são explicadas por causas anteriores; aceitar mudança sem causa contradiz o raciocínio prático e científico.</p>
+            </div>
+            <div class="impl-item">
+                <span class="impl-title">Coerência Cosmológica</span>
+                <p>A ordem e regularidade observadas no cosmos sugerem um princípio ordenante superior.</p>
+            </div>
+            <div class="impl-item">
+                <span class="impl-title">Economia Explicativa</span>
+                <p>Postular um início evita uma regressão infinita que implicaria na falta de uma explicação última para o agora.</p>
+            </div>
+        </section>
+
+        <section id="objecoes" class="section" data-nav="Objeções">
+            <h2>Objeções e Respostas</h2>
+            <div class="accordion">
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <h3>A — Regressão infinita é possível?</h3>
+                        <span class="acc-icon">▼</span>
+                    </div>
+                    <div class="acc-content">
+                        <p>Embora logicamente concebível em matemática, a regressão infinita falha em oferecer uma explicação ontológica. Sem um motor inicial, a "transmissão" do movimento não teria fonte.</p>
+                    </div>
+                </div>
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <h3>B — A causa precisa ser inteligente?</h3>
+                        <span class="acc-icon">▼</span>
+                    </div>
+                    <div class="acc-content">
+                        <p>Críticos sugerem leis físicas impessoais. Tomistas respondem que a direcionalidade da natureza (teleologia) aponta para uma inteligência ordenadora por trás das leis.</p>
+                    </div>
+                </div>
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <h3>C — A Ciência torna o argumento obsoleto?</h3>
+                        <span class="acc-icon">▼</span>
+                    </div>
+                    <div class="acc-content">
+                        <p>O Big Bang descreve o início físico, mas a Primeira Via é metafísica: ela questiona por que o sistema de mudanças existe em primeiro lugar, algo que a física não responde sozinha.</p>
+                    </div>
+                </div>
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <h3>D — Física Quântica e Causalidade</h3>
+                        <span class="acc-icon">▼</span>
+                    </div>
+                    <div class="acc-content">
+                        <p>Eventos subatômicos parecem incausados. Contudo, a causalidade metafísica trata da dependência de ser, não apenas de previsibilidade determinística.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modernidade" class="section" data-nav="Modernidade">
+            <h2>Reavivações Modernas</h2>
+            <p>Atualmente, o argumento ressurge em formas como o <b>Argumento Cosmológico Kalam</b> e em abordagens de filosofia analítica que focam na <i>dependência ontológica</i>.</p>
+            <div class="tags-container">
+                <div class="tag" data-tip="Enfatiza que o universo teve um começo e, portanto, uma causa.">Argumento Kalam</div>
+                <div class="tag" data-tip="Estudo do ser e da existência das coisas.">Metafísica Analítica</div>
+                <div class="tag" data-tip="William Lane Craig é um dos maiores defensores modernos.">W. L. Craig</div>
+                <div class="tag" data-tip="A ideia de que coisas contingentes dependem de algo necessário.">Contingência</div>
+            </div>
+        </section>
+
+        <section id="avaliacao" class="section" data-nav="Avaliação">
+            <h2>Avaliação Crítica Final</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Forças</h3>
+                    <p>Clareza conceitual sobre dependência causal e tradição filosófica de milênios que resiste ao tempo.</p>
+                </div>
+                <div class="card">
+                    <h3>Limitações</h3>
+                    <p>Depende de pressupostos metafísicos e não demonstra, por si só, todos os atributos do Deus teísta.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <div class="hero-symbol">⚪</div>
+        <p><b>A Primeira Via</b></p>
+        <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">
+            Publicado em 19 de Abril de 2026<br>
+            Baseado na Suma Teológica de São Tomás de Aquino.
+        </p>
+    </footer>
+
+    <button id="backTop" onclick="irPara('hero')">↑</button>
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        // Função de Navegação com Offset
+        function irPara(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const navH = document.getElementById('mainNav').offsetHeight;
+            const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+
+        // Scroll Progress Bar
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+
+            // Botão Voltar ao Topo
+            const btn = document.getElementById('backTop');
+            if (winScroll > 400) btn.classList.add('show');
+            else btn.classList.remove('show');
+        };
+
+        // Intersection Observer para Animações e Nav Ativo
+        const sections = document.querySelectorAll('.section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        const observerOptions = {
+            threshold: 0.08
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Atualizar Nav
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('onclick').includes(id)) {
+                            item.classList.add('active');
+                        }
+                    });
+
+                    // Animar passos sequencialmente
+                    if (entry.target.id === 'argumento') {
+                        const steps = entry.target.querySelectorAll('.step');
+                        steps.forEach((step, i) => {
+                            setTimeout(() => step.classList.add('visible'), i * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Acordeão Logic
+        document.querySelectorAll('.acc-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        // Tooltip Logic
+        const tooltip = document.getElementById('tooltip');
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('mouseenter', (e) => {
+                tooltip.innerText = tag.getAttribute('data-tip');
+                tooltip.style.opacity = '1';
+            });
+            tag.addEventListener('mousemove', (e) => {
+                tooltip.style.left = (e.clientX + 15) + 'px';
+                tooltip.style.top = (e.clientY + 15) + 'px';
+            });
+            tag.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = '0';
+            });
+            tag.addEventListener('click', () => {
+                tag.style.background = '#fff';
+                setTimeout(() => tag.style.background = '', 100);
+            });
+        });
+    </script>
+</body>
+</html>
